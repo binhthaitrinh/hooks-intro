@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import useResources from './useResources';
 
 // class ResourceList extends React.Component {
 //   state = {
@@ -28,31 +28,31 @@ import axios from 'axios';
 // }
 
 const ResourceList = props => {
-  const [resources, setResources] = useState([]);
+  //   const [resources, setResources] = useState([]);
 
-  //this is fine
-  // useEffect(() => {
-  //   fetchResource(props.resource);
-  // }, [props.resource]);
-  // const fetchResource = async resource => {
-  //     const response = await axios.get(
-  //       `https://jsonPlaceholder.typicode.com/${props.resource}`
-  //     );
-  //     setResources(response.data);
-  //   };
+  //   //this is fine
+  //   // useEffect(() => {
+  //   //   fetchResource(props.resource);
+  //   // }, [props.resource]);
+  //   // const fetchResource = async resource => {
+  //   //     const response = await axios.get(
+  //   //       `https://jsonPlaceholder.typicode.com/${props.resource}`
+  //   //     );
+  //   //     setResources(response.data);
+  //   //   };
 
-  //   return <div>{resources.length}</div>;
+  //   //   return <div>{resources.length}</div>;
 
-  //with async
-  useEffect(() => {
-    (async resource => {
-      const response = await axios.get(
-        `https://jsonPlaceholder.typicode.com/${props.resource}`
-      );
-      setResources(response.data);
-    })(props.resource);
-  }, [props.resource]);
-
+  //   //with async
+  //   useEffect(() => {
+  //     (async resource => {
+  //       const response = await axios.get(
+  //         `https://jsonPlaceholder.typicode.com/${resource}`
+  //       );
+  //       setResources(response.data);
+  //     })(props.resource);
+  //   }, [props.resource]);
+  const resources = useResources(props.resource);
   return (
     <ul>
       {resources.map(record => (
